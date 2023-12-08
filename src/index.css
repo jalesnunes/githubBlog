@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #071422;
+    -webkit-font-smoothing: antialiased;
+    color: #AFC2D4;
+}
+
+body, input, textarea, button {
+    font: 400 1rem Nunito, sans-serif;
+}
