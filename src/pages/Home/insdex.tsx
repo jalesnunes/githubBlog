@@ -7,8 +7,8 @@ import { PostSummary } from "./components/PostSummary/imdex";
 
 export function Home() {
   return (
-    <main className="w-[54rem] m-auto">
-      <section className="bg-baseProfile -mt-16 px-10 py-8 flex flex-row gap-6 items-center justify-between rounded-xl shadow-shadowProfile relative z-10">
+    <main className="w-[54rem] m-auto max-sm:w-[38rem]">
+      <section className="bg-baseProfile -mt-16 px-10 py-8 flex flex-row gap-6 items-center justify-between rounded-xl shadow-shadowProfile relative z-10 max-sm:mx-6">
         <img src={userGroup} alt="" className="w-36 h-36" />
         <div className="flex flex-col gap-6">
           <header className=" flex items-center justify-between">
@@ -46,7 +46,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="mt-28 flex flex-col gap-3">
+      <section className="mt-28 flex flex-col gap-3 max-sm:w-[34rem] max-sm:m-auto max-sm:mt-28">
         <div className="flex items-center justify-between">
           <h2 className="text-lg text-baseSubtitle font-bold">Publications</h2>
           <p className="text-sm text-baseSpan">6 publications</p>
@@ -64,7 +64,7 @@ export function Home() {
         </form>
       </section>
 
-      <section className="mt-28 mb-56 grid grid-cols-2 gap-8">
+      <section className="mt-28 mb-56 grid grid-cols-2 gap-8 max-sm:grid-cols-1">
         <PostSummary />
         <PostSummary />
         <PostSummary />
