@@ -4,10 +4,10 @@ import rightEffectHeader from '../../assets/rightEffectHeader.svg'
 
 export function Header() {
     return(
-        <div className='h-72 flex justify-between items-center bg-baseProfile'>
-            <img src={leftEffectHeader} alt="" />
+        <div className='h-72 flex justify-between items-center bg-baseProfile relative z-0'>
+            <img className='z-0' src={leftEffectHeader} alt="" />
             <img src={logoImg} alt="" />
-            <img src={rightEffectHeader} alt="" />
+            <img className='z-0' src={rightEffectHeader} alt="" />
         </div>
     )
 }

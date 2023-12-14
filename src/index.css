@@ -1,11 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 body {
     background-color: #071422;
     -webkit-font-smoothing: antialiased;
     color: #AFC2D4;
+}
+
+:focus {
+    outline: 0;
+    box-shadow: 0 0 0 1px #3294F8;
 }
 
 body, input, textarea, button {
