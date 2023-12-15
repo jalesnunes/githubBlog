@@ -3,6 +3,7 @@ import { ArrowSquareUpRight, MagnifyingGlass } from "phosphor-react";
 import githubLogo from "../../assets/githubLogo.svg";
 import workplace from "../../assets/workplace.svg";
 import userGroup from "../../assets/userGroup.svg";
+
 import { PostSummary } from "./components/PostSummary/imdex";
 
 export function Home() {
@@ -19,13 +20,13 @@ export function Home() {
             </a>
           </header>
 
-          <main>
+          <div>
             <p className="text-baseText">
               Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
               viverra massa quam dignissim aenean malesuada suscipit. Nunc,
               volutpat pulvinar vel mass.
             </p>
-          </main>
+          </div>
 
           <footer className="flex gap-4">
             <a href="" className="flex gap-2 items-center">
