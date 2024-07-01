@@ -47,7 +47,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="mt-28 flex flex-col gap-3 max-sm:m-auto max-sm:mt-28 max-sm:w-fit">
+      <section className="mt-28 flex flex-col gap-3 max-sm:mt-28 max-sm:max-w-full max-sm:m-5">
         <div className="flex items-center justify-between">
           <h2 className="text-lg text-baseSubtitle font-bold">Publications</h2>
           <p className="text-sm text-baseSpan">6 publications</p>
