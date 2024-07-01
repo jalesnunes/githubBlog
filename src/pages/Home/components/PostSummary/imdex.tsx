@@ -1,6 +1,6 @@
 export function PostSummary() {
   return (
-    <div className="w-[26rem] h-64 bg-basePost p-8 overflow-hidden rounded-xl hover:outline hover:cursor-pointer hover:outline-baseBorder max-sm:w-[34rem] max-sm:m-auto">
+    <div className="w-[26rem] h-64 bg-basePost p-8 overflow-hidden rounded-xl hover:outline hover:cursor-pointer hover:outline-baseBorder max-sm:w-fit max-sm:m-5">
       <header className="flex items-start gap-3 justify-between">
         <h1 className="text-xl text-baseTitle font-bold">
           JavaScript data types and data structures
