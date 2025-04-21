@@ -27,6 +27,8 @@ export function Home() {
     bio: "",
   })
 
+  const [githubPost, setGithubPost] = useState('')
+
   const fetchUserData = async () => {
     try {
       const response = await axios.get(
@@ -34,12 +36,24 @@ export function Home() {
       );
       setGithubUserData(response.data);
     } catch (error) {
-      console.error("Erro:", error);
+      console.error("Error: User not found", error);
     }
   };
 
+  const fetchPostData = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.github.com/repos/jalesnunes/githubBlog/issues`
+      );
+      setGithubPost(response.data);
+    } catch (error) {
+      console.error("Error: Enable to get posts", error);
+    }
+  }
+
   useEffect(() => {
     fetchUserData();
+    fetchPostData();
   }, []);
 
   console.log(githubUserData)
