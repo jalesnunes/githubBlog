@@ -1,10 +1,13 @@
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./Router";
+import { GithubDataProvider } from "./context/GithubDataContext";
 
 export function App() {
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <GithubDataProvider>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </GithubDataProvider>
   );
 }
