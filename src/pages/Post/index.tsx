@@ -4,46 +4,23 @@ import {
   CaretLeft,
   ChatTeardrop,
 } from "phosphor-react";
-
 import githubLogo from "../../assets/githubLogo.svg";
 import { NavLink, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-
-
-interface GithubPost {
-  title: string;
-  body: string;
-  created_at: string;
-  comments: number;
-  user: {
-    login: string;
-  };
-  html_url: string;
-}
+import { useContext } from "react";
+import { GithubDataContext } from "../../context/GithubDataContext";
 
 export function Post() {
   const { number } = useParams();
-  const [post, setPost] = useState<GithubPost | null>(null);
+  const { githubUserPost } = useContext(GithubDataContext); // Usando o contexto
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.github.com/repos/jalesnunes/githubBlog/issues/${number}`
-        );
-        setPost(response.data);
-      } catch (error) {
-        console.error("Erro ao carregar post:", error);
-      }
-    };
+  // Encontre o post correto baseado no número do parâmetro de URL
+  const post = githubUserPost.find((post) => post.number === Number(number));
 
-    fetchPost();
-  }, [number]);
 
   if (!post) {
-    return <p className="text-center mt-8 text-base text-baseText">Carregando...</p>;
+    return (
+      <p className="text-center mt-8 text-base text-baseText">Carregando...</p>
+    );
   }
 
   return (
@@ -73,7 +50,9 @@ export function Post() {
         <footer className="flex gap-4">
           <div className="flex gap-2 items-center">
             <img src={githubLogo} alt="" />
-            <span className="text-baseSpan hover:text-baseTitle">{post.user.login}</span>
+            <span className="text-baseSpan hover:text-baseTitle">
+              {post.user.login}
+            </span>
           </div>
 
           <div className="flex gap-2 items-center">
@@ -85,7 +64,9 @@ export function Post() {
 
           <div className="flex gap-2 items-center">
             <ChatTeardrop size={16} color="#3a536b" weight="fill" />
-            <span className="text-baseSpan hover:text-baseTitle">{post.comments} comments</span>
+            <span className="text-baseSpan hover:text-baseTitle">
+              {post.comments} comments
+            </span>
           </div>
         </footer>
       </section>
@@ -96,4 +77,3 @@ export function Post() {
     </main>
   );
 }
-

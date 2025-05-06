@@ -11,10 +11,16 @@ interface GitHubUser {
 }
 
 interface GithubUserPost {
+  id: number;
+  number: number;
   title: string;
   body: string;
-  id: string;
-  number: number;
+  created_at: string;
+  comments: number;
+  user: {
+    login: string;
+  };
+  html_url: string;
 }
 
 interface GithubDataContextType {
