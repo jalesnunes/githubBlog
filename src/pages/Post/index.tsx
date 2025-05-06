@@ -6,9 +6,46 @@ import {
 } from "phosphor-react";
 
 import githubLogo from "../../assets/githubLogo.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+
+
+interface GithubPost {
+  title: string;
+  body: string;
+  created_at: string;
+  comments: number;
+  user: {
+    login: string;
+  };
+  html_url: string;
+}
 
 export function Post() {
+  const { number } = useParams();
+  const [post, setPost] = useState<GithubPost | null>(null);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.github.com/repos/jalesnunes/githubBlog/issues/${number}`
+        );
+        setPost(response.data);
+      } catch (error) {
+        console.error("Erro ao carregar post:", error);
+      }
+    };
+
+    fetchPost();
+  }, [number]);
+
+  if (!post) {
+    return <p className="text-center mt-8 text-base text-baseText">Carregando...</p>;
+  }
+
   return (
     <main className="w-[54rem] m-auto">
       <section className="bg-baseProfile -mt-16 px-10 py-8 flex flex-col gap-6 justify-between rounded-xl shadow-shadowProfile relative z-10">
@@ -19,8 +56,10 @@ export function Post() {
           </NavLink>
 
           <a
-            href=""
-            className="flex gap-3 items-center hover:border-b  hover:border-b-blue"
+            href={post.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex gap-3 items-center hover:border-b hover:border-b-blue"
           >
             <span className="text-xs text-blue">SEE ON GITHUB</span>
             <ArrowSquareUpRight size={16} color="#3294f8" />
@@ -28,54 +67,33 @@ export function Post() {
         </header>
 
         <div>
-          <h1 className="text-2xl text-baseTitle font-bold">
-            JavaScript data types and data structures
-          </h1>
+          <h1 className="text-2xl text-baseTitle font-bold">{post.title}</h1>
         </div>
 
         <footer className="flex gap-4">
-          <a href="" className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center">
             <img src={githubLogo} alt="" />
-            <span className="text-baseSpan hover:text-baseTitle">
-              jalesnunes
-            </span>
-          </a>
+            <span className="text-baseSpan hover:text-baseTitle">{post.user.login}</span>
+          </div>
 
-          <a href="" className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center">
             <Calendar size={16} color="#3a536b" weight="fill" />
             <span className="text-baseSpan hover:text-baseTitle">
-              1 day ago
+              {new Date(post.created_at).toLocaleDateString()}
             </span>
-          </a>
+          </div>
 
-          <a href="" className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center">
             <ChatTeardrop size={16} color="#3a536b" weight="fill" />
-            <span className="text-baseSpan hover:text-baseTitle">
-              5 comments
-            </span>
-          </a>
+            <span className="text-baseSpan hover:text-baseTitle">{post.comments} comments</span>
+          </div>
         </footer>
       </section>
 
       <section className="p-8 flex flex-col gap-4">
-        <p className="to-baseText">
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have. These can be used to build other data
-          structures. Wherever possible, comparisons with other languages are
-          drawn.
-        </p>
-
-        <h3>Dynamic typing</h3>
-
-        <p className="to-baseText">
-          JavaScript is a loosely typed and dynamic language. Variables in
-          JavaScript are not directly associated with any particular value type,
-          and any variable can be assigned (and re-assigned) values of all
-          types:
-        </p>
+        <div className="text-baseText whitespace-pre-wrap">{post.body}</div>
       </section>
     </main>
   );
 }
+

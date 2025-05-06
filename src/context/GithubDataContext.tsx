@@ -14,6 +14,7 @@ interface GithubUserPost {
   title: string;
   body: string;
   id: string;
+  number: number;
 }
 
 interface GithubDataContextType {

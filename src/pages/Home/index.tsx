@@ -5,6 +5,7 @@ import userGroup from "../../assets/userGroup.svg";
 
 import { useContext, useState } from "react";
 import { GithubDataContext } from "../../context/GithubDataContext";
+import { Link } from "react-router-dom";
 
 export function Home() {
   const { githubUserData, githubUserPost } = useContext(GithubDataContext);
@@ -103,7 +104,8 @@ export function Home() {
           <h1>There are no posts registered.</h1>
         ) : (
           currentPosts.map((post) => (
-            <div
+            <Link
+              to={`/post/${post.number}`} // ou post.id se for o GitHub Issue ID
               key={post.id}
               className="w-[26rem] h-64 bg-basePost p-8 overflow-hidden rounded-xl hover:outline hover:cursor-pointer hover:outline-baseBorder max-sm:w-fit max-sm:m-5"
             >
@@ -117,7 +119,7 @@ export function Home() {
               </header>
 
               <p className="text-baseText mt-8 line-clamp-3">{post.body}</p>
-            </div>
+            </Link>
           ))
         )}
       </section>
