@@ -16,7 +16,6 @@ export function Post() {
   // Encontre o post correto baseado no número do parâmetro de URL
   const post = githubUserPost.find((post) => post.number === Number(number));
 
-
   if (!post) {
     return (
       <p className="text-center mt-8 text-base text-baseText">Carregando...</p>
@@ -24,9 +23,9 @@ export function Post() {
   }
 
   return (
-    <main className="w-[54rem] m-auto">
-      <section className="bg-baseProfile -mt-16 px-10 py-8 flex flex-col gap-6 justify-between rounded-xl shadow-shadowProfile relative z-10">
-        <header className="flex justify-between items-center">
+    <main className="w-full max-w-[54rem] px-4 m-auto">
+      <section className="bg-baseProfile -mt-16 px-6 sm:px-10 py-8 flex flex-col gap-6 justify-between rounded-xl shadow-shadowProfile relative z-10">
+        <header className="flex w-full justify-between items-center">
           <NavLink to="/" className="flex gap-3 items-center">
             <CaretLeft size={16} color="#3294f8" />
             <span className="text-xs text-blue">BACK</span>
@@ -43,11 +42,13 @@ export function Post() {
           </a>
         </header>
 
-        <div>
-          <h1 className="text-2xl text-baseTitle font-bold">{post.title}</h1>
+        <div className="w-full text-center sm:text-left">
+          <h1 className="text-xl sm:text-2xl text-baseTitle font-bold">
+            {post.title}
+          </h1>
         </div>
 
-        <footer className="flex gap-4">
+        <footer className="flex flex-wrap justify-center sm:justify-start gap-4 text-sm text-center sm:text-left">
           <div className="flex gap-2 items-center">
             <img src={githubLogo} alt="" />
             <span className="text-baseSpan hover:text-baseTitle">
@@ -71,7 +72,7 @@ export function Post() {
         </footer>
       </section>
 
-      <section className="p-8 flex flex-col gap-4">
+      <section className="p-4 sm:p-8 flex flex-col gap-4">
         <div className="text-baseText whitespace-pre-wrap">{post.body}</div>
       </section>
     </main>
