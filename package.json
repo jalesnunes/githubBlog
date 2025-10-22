@@ -12,12 +12,14 @@
   "dependencies": {
     "@phosphor-icons/react": "github:phosphor-icons/react",
     "axios": "^1.8.3",
+    "dompurify": "^3.3.0",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.1"
   },
   "devDependencies": {
+    "@types/dompurify": "^3.0.5",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
